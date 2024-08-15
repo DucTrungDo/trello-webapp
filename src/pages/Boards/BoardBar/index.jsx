@@ -12,13 +12,13 @@ import Avatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 
 const MENU_STYLES = {
-  color: 'primary.main',
-  bgcolor: 'white',
+  color: 'white',
+  bgcolor: 'transparent',
   border: 'none',
   paddingX: '5px',
   borderRadius: '4px',
-  '& .MuiSvgIcon-root': {
-    color: 'primary.main'
+  '.MuiSvgIcon-root': {
+    color: 'white'
   },
   '&:hover': {
     bgcolor: 'primary.50'
@@ -37,7 +37,11 @@ function BoardBar() {
         gap: 2,
         paddingX: 2,
         overflowX: 'auto',
-        borderTop: '1px solid #00bfa5'
+        borderTop: `1px solid  ${(theme) =>
+          theme.palette.mode === 'dark' ? '#646f82' : '#297eb0'}`,
+        bgcolor: (theme) =>
+          theme.palette.mode === 'dark' ? '#364257' : '#005c91'
+        // borderBottom: '1px solid white'
       }}
     >
       <Box
@@ -85,17 +89,27 @@ function BoardBar() {
           gap: 2
         }}
       >
-        <Button variant='outlined' startIcon={<PersonAddIcon />}>
+        <Button
+          variant='outlined'
+          startIcon={<PersonAddIcon />}
+          sx={{
+            color: 'white',
+            borderColor: 'white',
+            '&:hover': { borderColor: 'white' }
+          }}
+        >
           Invite
         </Button>
 
         <AvatarGroup
           max={7}
           sx={{
+            // gap: '10px',
             '& .MuiAvatar-root': {
               width: 34,
               height: 34,
-              fontSize: 16
+              fontSize: 16,
+              border: 'none'
             }
           }}
         >
