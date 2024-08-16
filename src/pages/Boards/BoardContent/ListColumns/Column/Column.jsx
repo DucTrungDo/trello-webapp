@@ -17,9 +17,9 @@ import Cloud from '@mui/icons-material/Cloud'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import Tooltip from '@mui/material/Tooltip'
 import ListCards from './ListCards/ListCards'
-import theme from '~/theme'
+import { mapOrder } from '~/utils/sorts'
 
-function Column() {
+function Column({ column }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -28,6 +28,7 @@ function Column() {
   const handleClose = () => {
     setAnchorEl(null)
   }
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
   return (
     <Box
       sx={{
@@ -60,7 +61,7 @@ function Column() {
             cursor: 'pointer'
           }}
         >
-          Column Tittle
+          {column?.title}
         </Typography>
         <Box>
           <Tooltip title='More options'>
@@ -126,7 +127,7 @@ function Column() {
       </Box>
 
       {/* Box List Cards */}
-      <ListCards />
+      <ListCards cards={orderedCards} />
 
       {/* Box Column Footer */}
       <Box
