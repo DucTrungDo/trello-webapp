@@ -19,7 +19,18 @@ import Tooltip from '@mui/material/Tooltip'
 import ListCards from './ListCards/ListCards'
 import { mapOrder } from '~/utils/sorts'
 
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
+
 function Column({ column }) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id, data: { ...column } })
+  const dndKitColumnStyles = {
+    // touchAction:'none', // Dành cho sensor default dạng PointerSensor
+    transform: CSS.Translate.toString(transform),
+    transition
+  }
+
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -28,6 +39,7 @@ function Column({ column }) {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
   const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
   return (
     <Box
@@ -42,6 +54,10 @@ function Column({ column }) {
         maxHeight: (theme) =>
           `calc(${theme.trello.boardContentHeight} - ${theme.spacing(5)})`
       }}
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
     >
       {/* Box Column Header */}
       <Box
