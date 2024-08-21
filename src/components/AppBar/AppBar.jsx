@@ -34,8 +34,7 @@ function AppBar() {
         gap: 2,
         paddingX: 2,
         overflowX: 'auto',
-        bgcolor: (theme) =>
-          theme.palette.mode === 'dark' ? '#46536a' : '#0066a0'
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#46536a' : '#0066a0')
       }}
     >
       <Box
@@ -53,11 +52,7 @@ function AppBar() {
             gap: 0.5
           }}
         >
-          <SvgIcon
-            component={TrelloIcon}
-            inheritViewBox
-            sx={{ color: 'white' }}
-          />
+          <SvgIcon component={TrelloIcon} inheritViewBox sx={{ color: 'white' }} />
           <Typography
             variant='span'
             sx={{

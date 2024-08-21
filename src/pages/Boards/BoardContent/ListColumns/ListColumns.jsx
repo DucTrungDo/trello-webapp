@@ -3,17 +3,11 @@ import Column from './Column/Column'
 import { Button } from '@mui/material'
 import NoteAddIcon from '@mui/icons-material/NoteAdd'
 
-import {
-  SortableContext,
-  horizontalListSortingStrategy
-} from '@dnd-kit/sortable'
+import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable'
 
 function ListColumns({ columns }) {
   return (
-    <SortableContext
-      items={columns?.map((e) => e._id)}
-      strategy={horizontalListSortingStrategy}
-    >
+    <SortableContext items={columns?.map((e) => e._id)} strategy={horizontalListSortingStrategy}>
       <Box
         sx={{
           bgcolor: 'inherit',

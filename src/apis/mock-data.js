@@ -32,11 +32,7 @@ export const mockData = {
               'https://trungquandev.com/wp-content/uploads/2022/07/fair-mern-stack-advanced-banner-trungquandev.jpg',
             memberIds: ['test-user-id-01'],
             comments: ['test comment 01', 'test comment 02'],
-            attachments: [
-              'test attachment 01',
-              'test attachment 02',
-              'test attachment 03'
-            ]
+            attachments: ['test attachment 01', 'test attachment 02', 'test attachment 03']
           },
           {
             _id: 'card-id-02',
