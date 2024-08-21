@@ -19,7 +19,7 @@ import {
   getFirstCollision
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
-import { cloneDeep, intersection } from 'lodash'
+import { cloneDeep } from 'lodash'
 
 import Column from './ListColumns/Column/Column'
 import Card from './ListColumns/Column/ListCards/Card/Card'
