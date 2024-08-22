@@ -38,10 +38,8 @@ function BoardBar({ board }) {
         gap: 2,
         paddingX: 2,
         overflowX: 'auto',
-        borderTop: `1px solid  ${(theme) =>
-          theme.palette.mode === 'dark' ? '#646f82' : '#297eb0'}`,
-        bgcolor: (theme) =>
-          theme.palette.mode === 'dark' ? '#364257' : '#005c91'
+        borderTop: `1px solid  ${(theme) => (theme.palette.mode === 'dark' ? '#646f82' : '#297eb0')}`,
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#364257' : '#005c91')
         // borderBottom: '1px solid white'
       }}
     >
@@ -52,36 +50,11 @@ function BoardBar({ board }) {
           gap: 2
         }}
       >
-        <Chip
-          sx={MENU_STYLES}
-          icon={<DashboardIcon />}
-          label={board?.title}
-          clickable
-        />
-        <Chip
-          sx={MENU_STYLES}
-          icon={<VpnLockIcon />}
-          label={capitalizeFirstLetter(board?.type)}
-          clickable
-        />
-        <Chip
-          sx={MENU_STYLES}
-          icon={<AddToDriveIcon />}
-          label='Add To Google Drive'
-          clickable
-        />
-        <Chip
-          sx={MENU_STYLES}
-          icon={<BoltIcon />}
-          label='Automation'
-          clickable
-        />
-        <Chip
-          sx={MENU_STYLES}
-          icon={<FilterListIcon />}
-          label='Filters'
-          clickable
-        />
+        <Chip sx={MENU_STYLES} icon={<DashboardIcon />} label={board?.title} clickable />
+        <Chip sx={MENU_STYLES} icon={<VpnLockIcon />} label={capitalizeFirstLetter(board?.type)} clickable />
+        <Chip sx={MENU_STYLES} icon={<AddToDriveIcon />} label='Add To Google Drive' clickable />
+        <Chip sx={MENU_STYLES} icon={<BoltIcon />} label='Automation' clickable />
+        <Chip sx={MENU_STYLES} icon={<FilterListIcon />} label='Filters' clickable />
       </Box>
       <Box
         sx={{

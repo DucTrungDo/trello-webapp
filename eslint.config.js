@@ -30,10 +30,7 @@ export default [
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true }
-      ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       'react/prop-types': 0,
@@ -49,6 +46,7 @@ export default [
 
       // Common
       'no-console': 1,
+      'no-extra-boolean-cast': 0,
       'no-lonely-if': 1,
       'no-unused-vars': 1,
       'no-trailing-spaces': 1,
