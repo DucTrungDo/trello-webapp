@@ -5,7 +5,6 @@ import { mapOrder } from '~/utils/sorts'
 
 import {
   DndContext,
-  // PointerSensor,
   MouseSensor,
   TouchSensor,
   useSensor,
@@ -13,9 +12,7 @@ import {
   DragOverlay,
   defaultDropAnimationSideEffects,
   closestCorners,
-  closestCenter,
   pointerWithin,
-  rectIntersection,
   getFirstCollision
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
@@ -30,9 +27,6 @@ const ACTIVE_DRAG_ITEM_TYPE = {
 }
 
 function BoardContent({ board }) {
-  // const pointerSensor = useSensor(PointerSensor, {
-  //   activationConstraint: { distance: 10 }
-  // })
   // Yêu cầu chuột di chuyển 10px thì mới kích hoạt event, fix trường hợp click bị gọi event
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: { distance: 10 }
@@ -43,7 +37,6 @@ function BoardContent({ board }) {
   })
 
   // Ưu tiên sử dụng kết hợp 2 loại sensors là mouse và touch để có trải nghiệm trên mobile tốt nhất, không bị bug
-  // const sensors = useSensors(pointerSensor)
   const sensors = useSensors(mouseSensor, touchSensor)
 
   const [orderedColumns, setOrderedColumns] = useState([])
@@ -283,13 +276,13 @@ function BoardContent({ board }) {
 
       // Tìm các điểm giao nhau, va chạm - intersections với con trỏ
       const pointerIntersections = pointerWithin(args)
-      const intersections = !!pointerIntersections?.length ? pointerIntersections : rectIntersection(args)
-      // Tìm overId đầu tiên trong đám intersections ở trên
-      let overId = getFirstCollision(intersections, 'id')
+      if (!pointerIntersections?.length) return
+      // Tìm overId đầu tiên trong đám pointerIntersections ở trên
+      let overId = getFirstCollision(pointerIntersections, 'id')
       if (overId) {
         const checkColumn = orderedColumns.find((column) => column._id === overId)
         if (checkColumn) {
-          overId = closestCenter({
+          overId = closestCorners({
             ...args,
             droppableContainers: args.droppableContainers.filter((container) => {
               return container.id !== overId && checkColumn?.cardOrderIds?.includes(container.id)
